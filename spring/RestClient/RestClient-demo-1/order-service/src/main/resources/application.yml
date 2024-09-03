@@ -1,0 +1,15 @@
+
+# In Real world, we will use vault to store these type of credentials
+client:
+  id: 123
+  secret: testSecret
+
+
+spring:
+  h2:
+    console:
+      enabled: true
+  datasource:
+     url: jdbc:h2:mem:order_db
+     username: sa
+     password: sa
