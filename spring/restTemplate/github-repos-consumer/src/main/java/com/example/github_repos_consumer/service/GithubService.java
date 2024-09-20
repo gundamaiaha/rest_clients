@@ -15,8 +15,6 @@ public class GithubService {
 
     private final RestTemplate restTemplate;
 
-    private final String GITHUB_SEARCH_URL = "/search/repositories?q={query}";
-
     public GitHubSearchResponse search(String query) {
 
         HttpHeaders headers = new HttpHeaders();
@@ -24,8 +22,9 @@ public class GithubService {
 
         HttpEntity<String> httpEntity = new HttpEntity<>(headers);
 
+        final String githubSearchUrl = "/search/repositories?q={query}";
         ResponseEntity<GitHubSearchResponse> response =
-                restTemplate.exchange(GITHUB_SEARCH_URL, HttpMethod.GET,
+                restTemplate.exchange(githubSearchUrl, HttpMethod.GET,
                 httpEntity, GitHubSearchResponse.class, query);
         if(response.getStatusCode().is2xxSuccessful()){
             return response.getBody();
